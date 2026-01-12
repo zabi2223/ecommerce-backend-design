@@ -189,6 +189,4 @@ ecommerce-backend-design/
 **Muhammad Zohaib Tariq**
 * 📧 [zohaibtariq566@gmail.com]
 * 🌐 [www.linkedin.com/in/zohaib-tariq-meo]
-[GitHub Profile](https://github.com/zabi2223)
-
-
+* [GitHub Profile](https://github.com/zabi2223)
