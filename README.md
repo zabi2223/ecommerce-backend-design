@@ -1,8 +1,4 @@
-# ecommerce-backend-design
-
-Perfect 👍 Since your project is built with **Node.js**, **Express.js**, **EJS**, and **MongoDB**, and it’s part of your **Backend Development Task for Interns**, here’s a clean, professional `README.md` file you can directly use for your GitHub repository.
-
----
+# Ecommerce-backend-design
 
 ## 📦 Backend Development Task for Interns
 
@@ -15,7 +11,7 @@ The task involves creating dynamic pages, connecting with a database, and ensuri
 
 ## 🗂️ Project Overview
 
-This project focuses on **backend integration** for an eCommerce website. It covers server setup, database connectivity, dynamic rendering using EJS, authentication, and deployment.
+This project focuses on **backend integration** for an Ecommerce website. It covers server setup, database connectivity, dynamic rendering using EJS, authentication, and deployment.
 
 The project is divided into **three weeks**, each with clear goals and deliverables.
 
@@ -191,6 +187,8 @@ ecommerce-backend-design/
 ## ✨ Author
 
 **Muhammad Zohaib Tariq**
+* 📧 [zohaibtariq566@gmail.com]
+* 🌐 [www.linkedin.com/in/zohaib-tariq-meo]
 [GitHub Profile](https://github.com/zabi2223)
 
 
