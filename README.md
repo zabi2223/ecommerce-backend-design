@@ -84,7 +84,7 @@ Add authentication and final backend functionalities.
   * Protected admin routes
 * Added **Add Product** feature with form submission.
 * Implemented **pagination** for product listing.
-* Deployed project to **Render / Vercel / Heroku**.
+* Deployed project to **Render**.
 
 **Deliverables:**
 
@@ -105,7 +105,7 @@ Add authentication and final backend functionalities.
 | Frontend          | HTML5, CSS3, JavaScript  |
 | Authentication    | JWT                      |
 | Version Control   | Git, GitHub              |
-| Deployment        | Render / Vercel / Heroku |
+| Deployment        | Render                   |
 
 ---
 
