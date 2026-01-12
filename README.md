@@ -175,12 +175,18 @@ ecommerce-backend-design/
    ```bash
    npm install
    ```
-4. **Run the server:**
+4. **Create .env file and write:**
+   ```bash
+      PORT=3000
+      MONGO_URI=mongodb+srv://user:user1234@cluster0.y7ecifw.mongodb.net/?appName=Cluster0
+      SESSION_SECRET=your_secret_key
+   ```
+5. **Run the server:**
 
    ```bash
    nodemon index.js
    ```
-5. **Visit:**
+6. **Visit:**
    👉 [http://localhost:3000](http://localhost:3000)
 
 ---
