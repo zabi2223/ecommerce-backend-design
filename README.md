@@ -1,6 +1,6 @@
 # Ecommerce-backend-design
 
-## 📦 Backend Development Task for Interns
+## 📦 Backend Development
 
 ### 🏁 Objective
 
