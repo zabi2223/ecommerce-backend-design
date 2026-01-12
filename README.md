@@ -149,7 +149,8 @@ ecommerce-backend-design/
 │       ├── category.js
 │       ├── product.js
 |       └── script.js
-│
+|
+├── .env
 ├── index.js
 ├── package.json
 └── README.md
