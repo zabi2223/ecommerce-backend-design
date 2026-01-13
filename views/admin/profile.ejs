@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextCart - Admin Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-sm border-b">
+        <div class="flex items-center justify-between px-6 py-4">
+            <!-- Logo -->
+            <a href="/admin" class="text-3xl font-bold text-blue-600 hover:text-blue-800 flex items-center">
+                <i class="fas fa-box mr-2"></i>
+                NextCart
+            </a>
+
+            <h2 class="absolute left-1/2 transform -translate-x-1/2 text-2xl sm:text-3xl font-extrabold text-gray-700">
+                Admin Profile
+            </h2>
+            <!-- Back Button -->
+            <button onclick="history.back()"
+                class="flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+        </div>
+    </header>
+
+    <main class="flex flex-col items-center justify-center py-12 px-4">
+        <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+            <!-- Profile Picture -->
+            <div class="flex flex-col items-center mb-6">
+                <img id="profileImage"
+                    src="<%= admin.profilePic && admin.profilePic.data ? `data:${admin.profilePic.contentType};base64,${admin.profilePic.data.toString('base64')}` : 'https://via.placeholder.com/100?text=Admin' %>"
+                    alt="Profile" class="w-24 h-24 rounded-full border-2 border-gray-300 mb-3 object-cover">
+            </div>
+
+            <% if (message) { %>
+                <div id="message"
+                    class="mb-4 p-3 rounded-lg text-white <%= message.includes('successfully') ? 'bg-green-500' : 'bg-red-500' %> text-center">
+                    <%= message %>
+                </div>
+                <% } %>
+
+                    <!-- Profile Form -->
+                    <form id="profileForm" action="/admin/profile/update" method="POST" enctype="multipart/form-data"
+                        class="space-y-4">
+                        <div>
+                            <label for="name" class="block">Name</label>
+                            <input type="text" name="name" id="name" value="<%= admin.name %>" required
+                                class="border p-2 w-full rounded">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block">Email</label>
+                            <input type="email" name="email" id="email" value="<%= admin.email %>" required
+                                class="border p-2 w-full rounded" readonly>
+                        </div>
+
+                        <div>
+                            <label for="oldPassword" class="block">Old Password</label>
+                            <input type="password" name="oldPassword" id="oldPassword"
+                                class="border p-2 w-full rounded">
+                            <p id="oldPasswordError" class="text-red-600 text-sm mt-1"></p>
+                        </div>
+
+                        <div>
+                            <label for="newPassword" class="block">New Password</label>
+                            <input type="password" name="newPassword" id="newPassword"
+                                class="border p-2 w-full rounded">
+                            <p id="newPasswordError" class="text-red-600 text-sm mt-1"></p>
+                        </div>
+
+                        <div>
+                            <label for="confirmPassword" class="block">Confirm Password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword"
+                                class="border p-2 w-full rounded">
+                            <p id="confirmPasswordError" class="text-red-600 text-sm mt-1"></p>
+                        </div>
+
+                        <div>
+                            <label for="profilePic" class="block">Profile Picture</label>
+                            <input type="file" name="profilePic" id="profilePic" accept="image/*"
+                                class="border p-2 w-full rounded">
+                        </div>
+
+                        <button type="submit" id="submitBtn"
+                            class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Update Profile</button>
+                    </form>
+        </div>
+    </main>
+
+    <script>
+        // Elements
+        const profileInput = document.getElementById('profilePic');
+        const profileImage = document.getElementById('profileImage');
+        const form = document.getElementById('profileForm');
+
+        // Profile picture preview
+        profileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profileImage.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Hide flash message after 5 seconds
+        const msg = document.getElementById('message');
+        if (msg) {
+            setTimeout(() => {
+                msg.style.transition = "opacity 0.5s";
+                msg.style.opacity = "0";
+                setTimeout(() => msg.remove(), 500);
+            }, 5000);
+        }
+
+        // Password validation
+        const oldPasswordInput = document.getElementById('oldPassword');
+        const newPasswordInput = document.getElementById('newPassword');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        const oldPasswordError = document.getElementById('oldPasswordError');
+        const newPasswordError = document.getElementById('newPasswordError');
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+        function validatePasswords() {
+            let valid = true;
+            const oldVal = oldPasswordInput.value.trim();
+            const newVal = newPasswordInput.value.trim();
+            const confirmVal = confirmPasswordInput.value.trim();
+
+            // Reset errors
+            oldPasswordError.textContent = '';
+            newPasswordError.textContent = '';
+            confirmPasswordError.textContent = '';
+
+            if (newVal || confirmVal) {
+                if (oldVal && oldVal === newVal) {
+                    oldPasswordError.textContent = "New password cannot be the same as old password.";
+                    valid = false;
+                }
+
+                if (newVal.length > 0 && newVal.length < 8) {
+                    newPasswordError.textContent = "Password must be at least 8 characters long.";
+                    valid = false;
+                }
+
+                if (newVal && !/[A-Z]/.test(newVal)) {
+                    newPasswordError.textContent += (newPasswordError.textContent ? ' ' : '') + "Password must contain at least one uppercase letter.";
+                    valid = false;
+                }
+
+                if (newVal && !/[!@#$%^&*(),.?":{}|<>]/.test(newVal)) {
+                    newPasswordError.textContent += (newPasswordError.textContent ? ' ' : '') + "Password must contain at least one special character.";
+                    valid = false;
+                }
+
+                if (newVal && confirmVal && newVal !== confirmVal) {
+                    confirmPasswordError.textContent = "Passwords do not match.";
+                    valid = false;
+                }
+            }
+
+            return valid;
+        }
+
+        [oldPasswordInput, newPasswordInput, confirmPasswordInput].forEach(input => {
+            input.addEventListener('input', validatePasswords);
+        });
+
+        form.addEventListener('submit', function (e) {
+            if (!validatePasswords()) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
