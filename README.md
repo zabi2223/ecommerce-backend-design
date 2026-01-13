@@ -221,6 +221,6 @@ ecommerce-backend-design/
 ## ✨ Author
 
 **Muhammad Zohaib Tariq**
-📧 [[zohaibtariq566@gmail.com](mailto:zohaibtariq566@gmail.com)]
-🌐 [[www.linkedin.com/in/zohaib-tariq-meo](http://www.linkedin.com/in/zohaib-tariq-meo)]
-🐱 [[https://github.com/zabi2223](https://github.com/zabi2223)]
+* 📧 [[zohaibtariq566@gmail.com](mailto:zohaibtariq566@gmail.com)]
+* 🌐 [[www.linkedin.com/in/zohaib-tariq-meo](http://www.linkedin.com/in/zohaib-tariq-meo)]
+* 🐱 [[https://github.com/zabi2223](https://github.com/zabi2223)]
