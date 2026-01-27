@@ -192,7 +192,7 @@ ecommerce-backend-design/
 
    ```bash
    PORT=3000
-   MONGO_URI=mmongodb+srv://user:user1234@cluster0.y7ecifw.mongodb.net/nextcart?retryWrites=true&w=majority
+   MONGO_URI= Add link 
    SESSION_SECRET=your_secret_key
    ```
 
